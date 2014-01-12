@@ -321,7 +321,9 @@ module Formtastic
       def input_class(as)
         @input_classes_cache ||= {}
         @input_classes_cache[as] ||= begin
-          Rails.application.config.cache_classes ? input_class_with_const_defined(as) : input_class_by_trying(as)
+          # Francois Kruta we load the class dynamically to make sure that we have no conflicts with simple form
+          #Rails.application.config.cache_classes ? input_class_with_const_defined(as) : input_class_by_trying(as)
+           input_class_by_trying(as)
         end
       end
       
