@@ -237,6 +237,8 @@ module Formtastic
         options[:as] ||= default_input_type(method, options)
 
         klass = input_class(options[:as])
+        
+        puts "KLASS FORMTASTIC : #{klass}"
 
         klass.new(self, template, @object, @object_name, method, options).to_html
       end
