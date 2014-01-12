@@ -342,13 +342,18 @@ module Formtastic
       
       # use auto-loading in development environment
       def input_class_by_trying(as)
-        begin
-          custom_input_class_name(as).constantize
+          # FK we force the full input class 
+        begin  
+        standard_input_class_name(as).constantize
+        #begin
+      
+          #custom_input_class_name(as).constantize
+        #rescue NameError
+          #standard_input_class_name(as).constantize
+        #end
         rescue NameError
-          standard_input_class_name(as).constantize
+          raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
         end
-      rescue NameError
-        raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
       end
 
       # :as => :string # => StringInput
