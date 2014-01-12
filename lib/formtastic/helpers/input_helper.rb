@@ -236,7 +236,7 @@ module Formtastic
         options = options.dup # Allow options to be shared without being tainted by Formtastic
         options[:as] ||= default_input_type(method, options)
 
-        klass = input_class(options[:as])
+        klass = standard_input_class_name(options[:as]).constantize #input_class(options[:as])
         
         puts "KLASS FORMTASTIC : #{klass}"
 
